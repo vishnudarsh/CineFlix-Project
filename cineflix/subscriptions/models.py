@@ -16,6 +16,8 @@ class DeviceChoices(models.TextChoices):
 
     LAPTOP = 'Laptop','Laptop'
 
+    ALL_DEVICES = 'All devices','All devices'
+
 class QaulityChoices(models.TextChoices):
 
     P480 = '480p','480p'
@@ -50,8 +52,31 @@ class SubscriptionPlans(BaseClass):
 
         verbose_name = 'Subcription Plans'
 
-        verbose_name_Plural = 'Subcription Plans'
+        verbose_name_plural = 'Subcription Plans'
 
-    def _str_(self):
+    def __str__(self):
 
         return self.name
+
+
+class UserSubscriptions(BaseClass):
+
+    profile = models.ForeignKey('authentication.Profile',on_delete=models.CASCADE)
+
+    plan = models.ForeignKey('SubscriptionPlans',on_delete=models.CASCADE)
+
+    start_date = models.DateTimeField(null=True,blank=True)
+
+    end_date = models.DateTimeField(null=True,blank=True)
+
+    active = models.BooleanField(default=False)
+
+    class Meta:
+
+        verbose_name =  'User Subscription'
+
+        verbose_name_plural = 'User Subscription'
+
+    def __str__(self):
+
+        return f'{self.profile.username}-{self.plan.name}'

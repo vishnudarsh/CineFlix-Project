@@ -4,11 +4,11 @@ def permitted_user_roles(roles):
 
     def decorator(fn):
 
-        def wrapper(request,args,*kwargs):
+        def wrapper(request,*args,**kwargs):
 
             if request.user.is_authenticated and request.user.role in roles:
 
-                return fn(request,args,*kwargs)
+                return fn(request,*args,**kwargs)
             
             else:
 

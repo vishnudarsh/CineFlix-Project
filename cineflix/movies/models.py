@@ -160,7 +160,7 @@ class Movie(BaseClass):
 
     genere = models.ManyToManyField('Genere')
 
-    artist = models.ManyToManyField('Artist')
+    artists = models.ManyToManyField('Artist')
 
     video = EmbedVideoField()
 

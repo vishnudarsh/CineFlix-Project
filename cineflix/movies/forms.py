@@ -34,7 +34,7 @@ class MovieForm(forms.ModelForm):
             
             'genere': forms.SelectMultiple(attrs={'class':'form-select'}),
 
-            'artist': forms.SelectMultiple(attrs={'class':'form-select'}),
+            'artists': forms.SelectMultiple(attrs={'class':'form-select'}),
 
             'video': forms.TextInput(attrs={'class':'form-control','type':'url','placeholder':'Enter Video URL'}),
 

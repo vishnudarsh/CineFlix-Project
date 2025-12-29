@@ -1,8 +1,20 @@
-from django.urls import path
+from django.shortcuts import render
 
-from .import views
+from django.views import View
 
-urlpatterns = [
+from .models import SubscriptionPlans
 
-    path('subscription-list/',views.SubscriptionView.as_view(),name='subscription-list')
-]
+# Create your views here.
+
+class SubscriptionView(View):
+
+    template = 'subscriptions/subscription-list.html'
+
+    def get(self,request,*args,**kwargs):
+
+        plans = SubscriptionPlans.objects.all()
+
+        data={'plans':plans}
+
+
+        return render (request,self.template,context=data)
